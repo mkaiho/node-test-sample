@@ -1,0 +1,19 @@
+version: '3.7'
+
+## Environment variables for workspace
+x-app-working-dir: &APP_WORKING_DIR
+  "/home/node-test-sample"
+x-app-volumes: &APP_VOLUMES
+  - ".:/home/node-test-sample"
+x-app-ports: &APP_PORTS
+  - 3000:3000
+
+services:
+  workspace:
+    build:
+      context: ./docker/workspace
+    container_name: node-test-sample-workspace
+    volumes: *APP_VOLUMES
+    working_dir: *APP_WORKING_DIR
+    ports: *APP_PORTS
+    tty: true
